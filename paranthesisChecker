@@ -1,0 +1,80 @@
+package main
+
+import (
+	"fmt"
+)
+
+var p []string
+
+func push(val string) {
+
+	p = append(p, val)
+
+}
+
+func pop() string {
+
+	if len(p) == 0 {
+
+		fmt.Println("Stack is Empty")
+	}
+
+	index := len(p) - 1
+	t := p[index]
+	p = p[:index]
+
+	return t
+}
+
+func main() {
+
+	s := "{{(([]))}}"
+
+	t := matchingCase(s)
+
+	fmt.Println(t)
+
+}
+
+func matchingCase(s string) bool {
+
+	b := []byte(s)
+
+	if len(s) <= 1 {
+
+		return false
+	}
+
+	for i := 0; i < len(b); i++ {
+
+		if string(b[i]) == "{" || string(b[i]) == "(" || string(b[i]) == "[" {
+
+			p = append(p, string(b[i]))
+
+		} else {
+			if len(p) == 0 {
+				return false
+			}
+			t := pop()
+			switch string(b[i]) {
+			case "}":
+				if t != "{" {
+					return false
+				}
+			case ")":
+				if t != "(" {
+					return false
+				}
+			case "]":
+				if t != "[" {
+					return false
+				}
+			}
+
+		}
+	}
+	if len(p) == 0 {
+		return true
+	}
+	return false
+}
