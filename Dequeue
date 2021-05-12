@@ -1,0 +1,54 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Queue []int
+
+func (q *Queue) IsEmpty() bool {
+
+	return len(*q) > 0
+}
+
+func (q *Queue) enqueue(val int) {
+
+	(*q) = append((*q), val)
+}
+
+func (q *Queue) dequeue() (int, bool) {
+
+	if len(*q)<=0 {
+
+		return 0, false
+	} else {
+
+		index := 0
+		t := (*q)[index]
+		*q = (*q)[index+1:]
+		return t, true
+
+	}
+}
+
+//Implement queue
+func main() {
+
+	var queue Queue
+	queue.enqueue(1)
+	queue.enqueue(2)
+	queue.enqueue(3)
+	queue.enqueue(4)
+	queue.enqueue(5)
+	fmt.Println("Enque elements are",queue)
+	
+	for len(queue)>0 {
+	
+		t,i := queue.dequeue()
+		
+		if i == true {
+		
+			fmt.Println("Dequeue element is :",t)
+		}
+	} 
+}
