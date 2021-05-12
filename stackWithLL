@@ -1,0 +1,106 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Node struct {
+	value int
+	next  *Node
+}
+
+type LinkedList struct {
+	head   *Node
+	length int
+}
+
+func (ll *LinkedList) push(val int) {
+
+	n := Node{}
+
+	n.value = val
+
+	temp := ll.head
+
+	if ll.head == nil {
+
+		ll.head = &n
+		ll.length++
+		return
+	}
+
+	for temp.next != nil {
+
+		temp = temp.next
+	}
+	temp.next = &n
+	ll.length++
+
+}
+
+func (ll *LinkedList) print() {
+
+	tmp := ll.head
+
+	for tmp != nil {
+
+		fmt.Println(tmp.value)
+		tmp = tmp.next
+	}
+
+}
+
+func (ll *LinkedList) pop() int{
+
+	if ll.length <= 0 {
+	fmt.Println("No element in stack")
+	return 0
+	}
+	
+	tmp := ll.head
+	prev := ll.head
+
+	for tmp.next != nil {
+
+		tmp = tmp.next
+		
+	}
+	for prev.next.next != nil {
+
+		prev = prev.next
+		
+	}
+	
+	t := tmp.value
+	prev.next = nil
+	ll.length--
+	return t
+	
+
+}
+
+//stack implementation using LinkedList
+func main() {
+
+	ll := LinkedList{}
+	ll.push(2)
+	ll.push(10)
+	ll.push(19)
+	ll.push(20)
+	ll.push(24)
+	ll.push(26)
+	ll.print()
+	t:=ll.pop()
+	fmt.Println("After Pop",t)
+	t1:=ll.pop()
+	fmt.Println("After Pop",t1)
+	t2:=ll.pop()
+	fmt.Println("After Pop",t2)
+	t3:=ll.pop()
+	fmt.Println("After Pop",t3)
+	t4:=ll.pop()
+	fmt.Println("After Pop",t4)
+	
+	ll.print()
+
+}
