@@ -1,0 +1,71 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Compute interface {
+	getArea() int
+	getPerimeter() int
+}
+
+type Square struct {
+	side int
+}
+
+type Rectangle struct {
+	length  int
+	breadth int
+}
+
+type Cube struct {
+	length  int
+	breadth int
+	height  int
+}
+
+func (s Square) getArea() int {
+
+	return (s.side) * (s.side)
+}
+
+func (s Square) getPerimeter() int {
+
+	return 4 * (s.side)
+}
+
+func (r Rectangle) getArea() int {
+
+	return (r.length) * (r.breadth)
+}
+
+func (r Rectangle) getPerimeter() int {
+
+	return 2 * ((r.length) + (r.breadth))
+}
+
+func (c Cube) getArea() int {
+
+	return (c.length) * (c.breadth) * (c.height)
+}
+
+func (c Cube) getPerimeter() int {
+
+	return 2 * ((c.length) + (c.breadth)) * (c.height)
+}
+
+func main() {
+
+	var ct Compute
+	ct = Square{2}
+	fmt.Println(ct.getArea())
+	fmt.Println(ct.getPerimeter())
+	
+	ct= Rectangle{2, 3}
+	fmt.Println(ct.getArea())
+	fmt.Println(ct.getPerimeter())
+	
+	ct = Cube{2, 3, 4}
+	fmt.Println(ct.getArea())
+	fmt.Println(ct.getPerimeter())
+}
