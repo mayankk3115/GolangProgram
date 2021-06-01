@@ -1,0 +1,38 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	s := "i know golang "
+	var at []string
+	t := reverseWord(s)
+	for i := len(t) - 1; i >= 0; i-- {
+		at = append(at, t[i])
+	}
+	fmt.Println(at)
+}
+
+func reverseWord(s string) []string {
+
+	r := []rune(s)
+	var st []string
+	var t string
+	for _, val := range r {
+
+		if string(val) != " " {
+
+			t += string(val)
+
+		} else {
+
+			st = append(st, t)
+			t = ""
+
+		}
+	}
+
+	return st
+}
