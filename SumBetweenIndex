@@ -1,0 +1,29 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	n := []int{2, 3, 4, 5}
+	s := 9
+	sumBetweenIndex(n, s)
+}
+
+func sumBetweenIndex(s []int, n int) {
+
+	for i := 0; i < len(s); i++ {
+			tempsum := 0
+		for j := i ; j < len(s); j++ {
+			tempsum = tempsum + s[j]
+			if tempsum == n {
+				fmt.Println(i,j)
+				break
+			}
+
+		}
+
+	}
+
+}
