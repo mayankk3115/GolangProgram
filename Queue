@@ -1,0 +1,50 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Queue []int
+
+func (q *Queue) enqueue(val int) {
+
+	*q = append(*q, val)
+
+}
+
+func (q *Queue) dequeue() {
+	if len(*q) <= 0 {
+		fmt.Println("No elements in queue")
+		return
+	}
+	fmt.Printf("The element going to dequeue is :%v", (*q)[0])
+	fmt.Println()
+	i := 0
+
+	*q = (*q)[i+1:]
+
+}
+
+func main() {
+
+	var q Queue
+	q.enqueue(1)
+	q.enqueue(10)
+	q.enqueue(20)
+	q.enqueue(30)
+	q.enqueue(40)
+	fmt.Println(q)
+	q.dequeue()
+	fmt.Println(q)
+	q.dequeue()
+	fmt.Println(q)
+	q.dequeue()
+	fmt.Println(q)
+	q.dequeue()
+	fmt.Println(q)
+	q.dequeue()
+	fmt.Println(q)
+	q.dequeue()
+	fmt.Println(q)
+
+}
