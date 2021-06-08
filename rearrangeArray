@@ -1,0 +1,32 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	a := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	t := rearrangeArrayAlternative(a)
+	fmt.Println(t)
+}
+
+func rearrangeArrayAlternative(n []int) []int {
+
+	t := make([]int, 0, len(n))
+
+	l := 0
+	r := len(n) - 1
+
+	for r > l {
+		t = append(t, n[r])
+		r--
+		t = append(t, n[l])
+		l++
+		if l == r {
+			t = append(t, n[r])
+		}
+	}
+
+	return t
+
+}
