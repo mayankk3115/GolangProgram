@@ -1,0 +1,50 @@
+package main
+
+import (
+	"fmt"
+)
+#Iterative
+func main() {
+
+	n := 5
+	fibonacci(n)
+}
+
+func fibonacci(n int) {
+
+	t := 0
+	t1 := 1
+	fmt.Println(t)
+	fmt.Println(t1)
+	for i := 2; i < n; i++ {
+
+		temp := t + t1
+		t = t1
+		t1 = temp
+		fmt.Println(temp)
+	}
+
+}
+
+#Recursive
+/*func main() {
+	
+	n := 12
+	t := fibonaci(n)
+	fmt.Println(t)
+}
+
+func fibonaci(n int) int{
+	
+	
+	if n<=1 {
+		
+		return n
+	} else {
+	
+		return fibonaci(n-1)+fibonaci(n-2)
+	
+	}
+	
+}*/
+
