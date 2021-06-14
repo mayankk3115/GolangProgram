@@ -1,0 +1,140 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Node struct {
+	value int
+	next  *Node
+}
+
+type LinkedList struct {
+	head   *Node
+	length int
+}
+
+func (l *LinkedList) insertion(val int) {
+
+	n := Node{}
+
+	n.value = val
+
+	if l.head == nil {
+
+		l.head = &n
+		l.length++
+		return
+
+	} else {
+
+		temp := l.head
+
+		for temp.next != nil {
+
+			temp = temp.next
+		}
+		temp.next = &n
+		l.length++
+	}
+
+}
+
+func (l *LinkedList) print() {
+
+	temp := l.head
+
+	for temp != nil {
+
+		fmt.Println(temp.value)
+		temp = temp.next
+	}
+
+}
+
+func (l *LinkedList) createCycle() {
+
+	temp := l.head
+	for temp.next != nil {
+
+		temp = temp.next
+
+	}
+	temp.next = l.head.next
+}
+
+func (l *LinkedList) isCycle() bool {
+
+	current := l.head
+	prev := l.head
+
+	for current != nil && prev != nil && current.next != nil {
+
+		current = current.next.next
+		prev = prev.next
+
+		if current == prev {
+
+			return true
+
+		}
+	}
+	return false
+}
+
+func (l *LinkedList) removeCycle() {
+
+	fast := l.head
+	slow := l.head
+
+	for slow != nil && fast != nil && fast.next != nil {
+
+		slow = slow.next
+		fast = fast.next.next
+
+		if slow == fast{
+
+			break
+
+		}
+	}
+
+	if slow == l.head {
+
+		for fast.next != slow {
+			fast = fast.next
+		}
+		fast.next = nil
+
+	} else if slow == fast{
+
+		slow = l.head
+		for slow.next != fast.next {
+
+			slow = slow.next
+			fast = fast.next
+
+		}
+		fast.next = nil
+	}
+
+}
+
+func main() {
+
+	l := LinkedList{}
+	l.insertion(10)
+	l.insertion(20)
+	l.insertion(30)
+	l.insertion(40)
+	l.insertion(50)
+	l.insertion(60)
+	l.insertion(70)
+	l.print()
+	l.createCycle()
+	t:=l.isCycle()
+	fmt.Println(t)
+	l.removeCycle()
+	fmt.Println("cycle removed")
+	l.print()
+}
