@@ -1,0 +1,66 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	n := []int{2, 0, 1, 0, 2, 0, 3}
+	t := trappingRainWater(n)
+	fmt.Printf("Total number of water stored is : %v", t)
+
+}
+
+func max(i, j int) int {
+
+	if i > j {
+
+		return i
+	} else {
+
+		return j
+	}
+}
+
+func min(i, j int) int {
+
+	if i > j {
+
+		return j
+	} else {
+
+		return i
+	}
+}
+
+func trappingRainWater(n []int) int {
+
+	//array should not be in sorted order i.e increasing or decreasing order
+
+	var ws int
+
+	for i := 1; i < len(n)-1; i++ {
+		left := n[i]
+		right := n[i]
+
+		for l, r := i-1, i+1; l >= 0 || r < len(n); l, r = l-1, r+1 {
+
+			if l >= 0 {
+
+				left = max(left, n[l])
+
+			}
+
+			if r < len(n) {
+
+				right = max(right, n[r])
+			}
+
+		}
+		ws += min(left, right) - n[i]
+
+	}
+
+	return ws
+}
