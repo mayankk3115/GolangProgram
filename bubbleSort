@@ -1,0 +1,24 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	a := []int{2, 4, 5, 6, 1, 0}
+	bubbleSort(a)
+}
+
+func bubbleSort(a []int) {
+
+	for i := 0; i < len(a); i++ {
+
+		for j := i + 1; j < len(a); j++ {
+			if a[i] >= a[j] {
+
+				a[i], a[j] = a[j], a[i]
+			}
+		}
+	}
+	fmt.Println(a)
+}
