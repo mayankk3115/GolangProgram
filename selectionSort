@@ -1,0 +1,32 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	a := []int{1, 5, 6, 9, 2, 3, 4,0}
+	selectionSort(a)
+}
+
+func selectionSort(a []int) {
+
+	var min_index int
+
+	for i := 0; i < len(a); i++ {
+
+		min_index = i
+		for j := i; j < len(a); j++ {
+
+			if a[j] < a[min_index] {
+
+				min_index = j
+			}
+
+		}
+		a[i],a[min_index]=a[min_index],a[i]	
+	
+	}
+
+	fmt.Println(a)
+}
