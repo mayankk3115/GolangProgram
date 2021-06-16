@@ -1,0 +1,103 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Node struct {
+	value int
+	next  *Node
+}
+
+type LinkedList struct {
+	head   *Node
+	length int
+}
+
+func (l *LinkedList) insertion(val int) {
+
+	var n Node
+
+	n.value = val
+
+	if l.head == nil {
+
+		l.head = &n
+		l.length++
+		return
+
+	} else {
+
+		temp := l.head
+
+		for temp.next != nil {
+
+			temp = temp.next
+		}
+
+		temp.next = &n
+		l.length++
+	}
+}
+
+func (l *LinkedList) print() {
+
+	temp := l.head
+	for temp != nil {
+
+		fmt.Println(temp.value)
+		temp = temp.next
+	}
+
+}
+
+func (l *LinkedList) findIntersectionPoint(headA, headB *Node) *Node {
+
+	if headA == nil || headB == nil {
+
+		return nil
+	}
+	p, q := headA, headB
+
+	for p != nil || q != nil {
+
+		if p == q {
+
+			return p
+		}
+		if p == nil {
+			p = headB
+			q = q.next
+			continue
+		}
+		if q == nil {
+			q = headA
+			p = p.next
+			continue
+		}
+		p = p.next
+		q = q.next
+	}
+	return nil
+}
+
+func main() {
+
+	var l LinkedList
+	var l2 LinkedList
+
+	l.insertion(10)
+	l.insertion(20)
+	l.insertion(30)
+	l.insertion(40)
+	l.insertion(50)
+	
+	l2.insertion(25)
+	l2.insertion(35)
+	l2.head.next.next = l.head.next.next.next
+
+	var t *Node
+	t=l.findIntersectionPoint(l.head,l2.head)
+	fmt.Println("Intersection point of 2 linked list is:-",t.value)
+
+}
