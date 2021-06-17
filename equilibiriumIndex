@@ -1,0 +1,48 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	n := []int{1, 2, 3}
+	t := equilibiriumIndex(n)
+	fmt.Println("Equilibirium Index is :", t)
+}
+
+func equilibiriumIndex(a []int) int {
+
+	m := 1
+	l := m
+	r := m + 1
+
+	for l >= 0 && r < len(a) {
+		sum1 := add(a[:l])
+		sum2 := add(a[r:])
+		if sum1 == sum2 {
+
+			return m
+
+		} else {
+
+			m++
+			l++
+			r++
+
+		}
+	}
+	return -1
+
+}
+
+func add(a []int) int {
+
+	var sum = 0
+	for i := 0; i < len(a); i++ {
+
+		sum += a[i]
+
+	}
+	return sum
+}
