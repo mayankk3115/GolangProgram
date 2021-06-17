@@ -35,6 +35,24 @@ func equilibiriumIndex(a []int) int {
 	return -1
 
 }
+/*
+func equlibiriumIndex(a []int) int {
+
+	in := add(a)
+	leftsum := 0
+	fmt.Println("total add is ",in)
+	for i, val := range a {
+		in = in - val
+		if in == leftsum {
+			return i
+		}
+		leftsum = leftsum +val
+
+	
+	}
+	return -1
+}
+*/
 
 func add(a []int) int {
 
