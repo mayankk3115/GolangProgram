@@ -1,0 +1,63 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Node struct {
+	left  *Node
+	value int
+	right *Node
+}
+
+type Tree struct {
+	root *Node
+}
+
+func (t *Tree) insertion(newNode *Node, val int) {
+
+	n := Node{}
+	n.value = val
+
+	if t.root == nil {
+
+		t.root = &n
+		return
+
+	}
+	if val < newNode.value {
+
+		if newNode.left == nil {
+			newNode.left = &n
+		} else {
+			t.insertion(newNode.left, val)
+		}
+		
+	} else {
+
+		if newNode.right == nil {
+			newNode.right = &n
+		} else {
+			t.insertion(newNode.right, val)
+		}
+	}
+}
+
+func (t *Tree) print(temp *Node) {
+	if temp == nil {
+		return
+	}
+	fmt.Println(temp.value)
+	t.print(temp.left)
+	t.print(temp.right)
+}
+
+func main() {
+	t := Tree{}
+	t.insertion(t.root, 10)
+	t.insertion(t.root, 5)
+	t.insertion(t.root, 20)
+	t.insertion(t.root, 3)
+	t.insertion(t.root, 15)
+	t.print(t.root)
+}
