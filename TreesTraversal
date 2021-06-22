@@ -1,0 +1,91 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Node struct {
+	left  *Node
+	value int
+	right *Node
+}
+
+type Tree struct {
+	root *Node
+}
+
+func (t *Tree) insert(newNode *Node, val int) {
+
+	n := Node{}
+	n.value = val
+
+	if t.root == nil {
+
+		t.root = &n
+		return
+	}
+
+	if val < newNode.value {
+
+		if newNode.left == nil {
+			newNode.left = &n
+		} else {
+			t.insert(newNode.left, val)
+		}
+	} else {
+		if newNode.right == nil {
+			newNode.right = &n
+		} else {
+			t.insert(newNode.right, val)
+		}
+
+	}
+}
+
+func (t *Tree) printPreOrder(temp *Node) {
+	if temp == nil {
+		return
+	}
+	fmt.Println(temp.value)
+	t.printPreOrder(temp.left)
+	t.printPreOrder(temp.right)
+
+}
+
+func (t *Tree) printInOrder(temp *Node) {
+	if temp == nil {
+		return
+	}
+	t.printInOrder(temp.left)
+	fmt.Println(temp.value)
+	t.printInOrder(temp.right)
+
+}
+
+func (t *Tree) printPostOrder(temp *Node) {
+	if temp == nil {
+		return
+	}
+	t.printPostOrder(temp.left)
+	t.printPostOrder(temp.right)
+	fmt.Println(temp.value)
+
+}
+
+func main() {
+
+	t := Tree{}
+	t.insert(t.root, 10)
+	t.insert(t.root, 30)
+	t.insert(t.root, 50)
+	t.insert(t.root, 20)
+	t.insert(t.root, 90)
+	t.insert(t.root, 100)
+	fmt.Println("PreOrder: ")
+	t.printPreOrder(t.root)
+	fmt.Println("PostOrder: ")
+	t.printPostOrder(t.root)
+	fmt.Println("Inorder: ")
+	t.printInOrder(t.root)
+
+}
