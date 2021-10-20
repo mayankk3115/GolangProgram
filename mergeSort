@@ -1,0 +1,53 @@
+package main
+
+import (
+	"fmt"
+)
+
+func mergeSort(a []int) []int {
+
+	if len(a) <= 1 {
+		return a
+	}
+	n := len(a) / 2
+	l := mergeSort(a[:n])
+
+	r := mergeSort(a[n:])
+
+	return merge(l, r)
+
+}
+
+func merge(l, r []int) []int {
+
+	k := make([]int, 0, len(l)+len(r))
+	for len(l) > 0 || len(r) > 0 {
+		if len(l) == 0 {
+
+			return append(k, r...)
+		}
+		if len(r) == 0 {
+
+			return append(k, l...)
+		}
+		if l[0] <= r[0] {
+
+			k = append(k, l[0])
+			l = l[1:]
+		} else {
+
+			k = append(k, r[0])
+			r = r[1:]
+		}
+	}
+	fmt.Println(k)
+	return k
+}
+
+func main() {
+	a := []int{8, 7, 5, -1, 6, 4, 3, 2}
+	//a := []int{9, 4, 3, 6, 1, 2, 10, 5, 7, 8}
+	fmt.Println("Before mergeSort, array is :", a)
+	t := mergeSort(a)
+	fmt.Println("After mergeSort, array is :", t)
+}
