@@ -1,0 +1,65 @@
+package main
+
+import (
+	"fmt"
+	//"sort"
+	//"strings"
+)
+
+func sort(b []byte) []byte {
+
+	for i := 0; i < len(b); i++ {
+		for j := i + 1; j < len(b); j++ {
+			if b[i] > b[j] {
+				b[i], b[j] = b[j], b[i]
+			}
+		}
+
+	}
+	return b
+
+}
+
+func isAnagram(s1, s2 string) bool {
+
+	/*s3 := strings.Split(s1,"")
+		s4 := strings.Split(s2,"")
+
+		sort.Slice(s3, func(i, j int) bool {
+	    return s3[i] < s3[j]
+	  })
+
+		sort.Slice(s4, func(i, j int) bool {
+	    return s4[i] < s4[j]
+	  })
+
+		s5 := strings.Join(s3,"")
+		s6 := strings.Join(s4,"")
+
+		if s5==s6 {
+		 return true
+		}*/
+
+	b1 := []byte(s1)
+	b2 := []byte(s2)
+	sort(b1)
+	sort(b2)
+	s3 := string(b1)
+	s4 := string(b2)
+	fmt.Println(s3)
+	fmt.Println(s4)
+	if s3 == s4 {
+		return true
+	}
+
+	return false
+
+}
+
+func main() {
+	s1 := "mynameis"
+	s2 := "isnamemy"
+
+	t := isAnagram(s1, s2)
+	fmt.Println("The s1 is anagram of s2:", t)
+}
