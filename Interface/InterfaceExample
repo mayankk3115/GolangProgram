@@ -1,0 +1,53 @@
+package main
+
+import "fmt"
+
+type Shape interface {
+	Perimeter() float64
+	Area() float64
+}
+
+type Rectangle struct {
+	breadth float64
+	length  float64
+}
+
+type Circle struct {
+	side float64
+}
+
+func (r Rectangle) Perimeter() float64 {
+	return 2 * (r.length + r.breadth)
+}
+
+func (r Rectangle) Area() float64 {
+	return r.length * r.breadth
+}
+
+func (c Circle) Area() float64 {
+	return c.side * c.side
+}
+
+func (c Circle) Perimeter() float64 {
+	return 4 * c.side
+}
+
+func main() {
+
+	var s Shape
+	s = Rectangle{3, 10}
+	fmt.Println(s.Area())
+	fmt.Println(s.Perimeter())
+	fmt.Printf("The type of s is %T\n", s)
+	fmt.Println()
+	r := Rectangle{10.4, 14.4}
+	fmt.Println(r.Area())
+	fmt.Println(r.Perimeter())
+	fmt.Printf("The type of s is %T\n", r)
+	fmt.Println()
+	s = Circle{3.3}
+	fmt.Println(s.Area())
+	fmt.Println(s.Perimeter())
+	fmt.Printf("The type of s is %T\n", s)
+
+}
