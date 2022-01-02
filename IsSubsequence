@@ -1,0 +1,40 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	a := []int{1, 2, 3, 4, 5, 6}
+	b := []int{3, 4, 5, 6, 1}
+	t := isSubsequence(a, b)
+	fmt.Printf("Is valid subsequence?%v", t)
+}
+
+func isSubsequence(s []int, t []int) bool {
+	var ls, lt = len(s), len(t)
+	if lt > ls {
+		return false
+	}
+	var i, j = 0, 0
+	for i < ls && j < lt {
+		if s[i] == t[j] {
+			fmt.Println(s[i], t[j])
+			j++
+		}
+		i++
+	}
+	return j == lt
+
+}
+
+// func isSubsequence(a []int, s []int) bool {
+// 	i, j := 0, 0
+// 	for i < len(a) && j < len(s) {
+
+// 		if a[i] == s[j] {
+// 			j += 1
+// 		}
+// 		i += 1
+// 	}
+// 	return j == len(s)
+// }
