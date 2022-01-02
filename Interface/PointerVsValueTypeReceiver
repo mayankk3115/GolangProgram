@@ -1,0 +1,30 @@
+package main
+
+import "fmt"
+
+type Shape interface {
+	Area() float64
+	Perimeter() float64
+}
+
+type Rect struct {
+	length  float64
+	breadth float64
+}
+
+func (r Rect) Area() float64 {
+	return r.length * r.breadth
+}
+
+func (r *Rect) Perimeter() float64 {
+	return 2 * (r.length + r.breadth)
+}
+
+func main() {
+	c := Rect{3, 4}
+	var s Shape = &c
+	a := s.Area()
+	p := s.Perimeter()
+	fmt.Println("The area of Rect is:", a)
+	fmt.Println("The perimeter of Rect is:", p)
+}
