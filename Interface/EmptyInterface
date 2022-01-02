@@ -1,0 +1,23 @@
+package main
+
+import "fmt"
+
+type myString string
+
+type Rectangle struct {
+	length  int
+	breadth int
+}
+
+func value(t interface{}) {
+	fmt.Printf("The type of interface is: %T and the value is: %v\n", t, t)
+}
+
+func main() {
+
+	m := myString("hello from string")
+	value(m)
+	r := Rectangle{1, 3}
+	value(r)
+
+}
