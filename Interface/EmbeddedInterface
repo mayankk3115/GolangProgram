@@ -1,0 +1,40 @@
+package main
+
+import "fmt"
+
+type Shape interface {
+	Area() float64
+}
+
+type Object interface {
+	Volume() float64
+}
+
+type Embedded interface {
+	Shape
+	Object
+}
+
+type Cube struct {
+	side float64
+}
+
+func (c Cube) Area() float64 {
+	return 6 * (c.side * c.side)
+}
+
+func (c Cube) Volume() float64 {
+	return (c.side * c.side * c.side)
+}
+
+func main() {
+	t := Cube{4}
+	var e Embedded = t
+	var s Shape = t
+	var o Object = t
+
+	fmt.Printf("The type is %T and the value is %v\n", e, e)
+	fmt.Printf("The type is %T and the value is %v\n", s, s)
+	fmt.Printf("The type is %T and the value is %v", o, o)
+
+}
