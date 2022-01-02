@@ -26,7 +26,7 @@ func isSubsequence(s []int, t []int) bool {
 	return j == lt
 
 }
-
+//Method same as above
 // func isSubsequence(a []int, s []int) bool {
 // 	i, j := 0, 0
 // 	for i < len(a) && j < len(s) {
@@ -37,4 +37,18 @@ func isSubsequence(s []int, t []int) bool {
 // 		i += 1
 // 	}
 // 	return j == len(s)
+// }
+
+//2nd Method
+// func isSubsequence(a []int, s []int) bool {
+// 	i := 0
+// 	for _, value := range a {
+// 		if i == len(s) {
+// 			break
+// 		}
+// 		if value == s[i] {
+// 			i++
+// 		}
+// 	}
+// 	return i == len(s)
 // }
