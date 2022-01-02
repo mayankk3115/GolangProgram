@@ -1,0 +1,29 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func explain(i interface{}) {
+
+	switch i.(type) {
+	case string:
+		fmt.Println("The type is string and value is ", strings.ToUpper(i.(string)))
+	case float64:
+		fmt.Println("The type is float64 and value is ", i)
+	case int:
+		fmt.Println("The type is int and value is ", i)
+	default:
+		fmt.Println("The type is default")
+
+	}
+
+}
+
+func main() {
+	explain("I am Mayank")
+	explain(6.4)
+	explain(3)
+	explain(true)
+}
