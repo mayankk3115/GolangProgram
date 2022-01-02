@@ -1,0 +1,39 @@
+package main
+
+import "fmt"
+
+type Shape interface {
+	Area() float64
+}
+
+type Object interface {
+	Volume() float64
+}
+
+type AnyOther interface {
+	Perimeter() float64
+}
+
+type Cube struct {
+	side float64
+}
+
+func (c Cube) Area() float64 {
+	return 6 * (c.side * c.side)
+}
+
+func (c Cube) Volume() float64 {
+	return (c.side * c.side * c.side)
+}
+
+func main() {
+
+	var s Shape = Cube{3}
+	c1, ok := s.(Cube)
+	c, ok1 := s.(Object)
+	t, ok2 := s.(AnyOther)
+	fmt.Printf("The type is %T and the value is %v and it exists? %v\n", c, c1.Area(), ok)
+	fmt.Printf("The type is %T and the value is %v and it exists? %v\n", c, c.Volume(), ok1)
+	fmt.Printf("The type is %T and the value is %v\n", t, ok2)
+
+}
