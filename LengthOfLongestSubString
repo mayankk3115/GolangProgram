@@ -1,0 +1,39 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+
+	a := "ramtard"
+	t := lengthOfLongestSubsString(a)
+	fmt.Println(t)
+
+}
+func lengthOfLongestSubsString(s string) int {
+	if len(s) == 1 {
+		return 1
+	}
+
+	var temp string
+	var result string
+	for i := 0; i < len(s); i++ {
+		temp = ""
+		for j := i; j < len(s); j++ {
+			if !strings.Contains(temp, string(s[j])) {
+				temp += string(s[j])
+			} else {
+				break
+			}
+			if len(temp) > len(result) {
+				result = temp
+			}
+
+		}
+	}
+
+	return len(result)
+
+}
