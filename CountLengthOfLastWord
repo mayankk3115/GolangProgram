@@ -1,0 +1,32 @@
+package main
+
+import "fmt"
+
+func main() {
+	s := "Hello Worlding cim"
+	c := countLengthOfLastWord(s)
+	fmt.Println("The length of last word is:", c)
+}
+
+func countLengthOfLastWord(s string) int {
+	i := 0
+	count := 0
+	for i < len(s) {
+		if s[i] != ' ' {
+			count++
+			i++
+		} else {
+			for i < len(s) && s[i] == ' ' {
+				i++
+			}
+			if i == len(s) {
+				return count
+			} else {
+				count = 0
+			}
+		}
+	}
+	return count
+}
+//Space complexity:-O(1)
+//Time Complexity:- O(n)
